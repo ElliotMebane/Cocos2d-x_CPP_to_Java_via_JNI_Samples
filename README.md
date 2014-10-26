@@ -8,6 +8,8 @@ Content Notes
 <li>I omitted the cocos2d folder from this source because it's 200+Mb. Add it from your owm copy of Cocos2d-x.</li> 
 <li>I've included a compiled APK file so you can load it on your device and preview it without having to compile the app.<br/>
 https://github.com/ElliotMebane/Cocos2d-x_CPP_to_Java_via_JNI_Samples/blob/master/proj.android/bin/JNIDemos.apk</li>
+<li>The Java file is here: <br/>
+https://github.com/ElliotMebane/Cocos2d-x_CPP_to_Java_via_JNI_Samples/blob/master/proj.android/src/com/roguish/MyAwesomeJavaClass.java</li>
 </ul>
 
 This sample demonstrates the use of JNI for C++ to Java communication with Cocos2d-x v3.2. The foundation of the sample was this blog post by Stefan Nguyen:<br/>
