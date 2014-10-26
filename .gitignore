@@ -1,0 +1,13 @@
+cocos2d/tools
+cocos2d/licenses
+cocos2d/plugin
+cocos2d/build
+cocos2d/docs
+cocos2d/extensions
+cocos2d/cocos
+cocos2d/external
+cocos2d/AUTHORS
+cocos2d/CHANGELOG
+cocos2d/CMakeLists.txt
+cocos2d/download-deps.py
+cocos2d/README.md
