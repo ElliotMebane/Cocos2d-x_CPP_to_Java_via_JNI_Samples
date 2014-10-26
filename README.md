@@ -56,3 +56,6 @@ Dev/Test environment
 </ul>
 I haven't made a sample of communication from Java to C++, but I may apply the info from Nguyen's second post and make a sample. <br/>
 http://stnguyen.com/cocos2d-x/call-cpp-functions-from-java.html
+
+Elliot Mebane<br/>
+http://www.roguish.com/blog
