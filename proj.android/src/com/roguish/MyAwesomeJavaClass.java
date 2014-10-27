@@ -26,10 +26,19 @@ THE SOFTWARE.
 ****************************************************************************/
 package com.roguish;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.text.format.DateFormat;
 
 public class MyAwesomeJavaClass extends Cocos2dxActivity
 {   
@@ -125,7 +134,7 @@ public class MyAwesomeJavaClass extends Cocos2dxActivity
     	    });
     	}
     	
-    	String tReturn = "doMeAFavourString return, pStringTimes:" + Integer.toString( pStringTimes );
+    	String tReturn = "doMeAFavourString return, pStringTimes:" + Integer.toString( pStringTimes );	
     	return tReturn;
     }
     
@@ -161,4 +170,16 @@ public class MyAwesomeJavaClass extends Cocos2dxActivity
     	return false;
     }
 
+    // inspiration: http://discuss.cocos2d-x.org/t/jni-c-java-method-invocation-simple-example/4861
+    static double[] getLocation()
+    {	
+    	LocationManager tLocationMgr = (LocationManager) ( (Cocos2dxActivity) Cocos2dxActivity.getContext() ).getSystemService( Context.LOCATION_SERVICE );
+		String tBestProvider = tLocationMgr.getBestProvider( new Criteria(), true );
+		Location tLocation = tLocationMgr.getLastKnownLocation( tBestProvider );
+		double tLat = tLocation.getLatitude();
+		double tLong = tLocation.getLongitude();		
+		double[] locationData = { tLat, tLong };
+		
+		return locationData;
+	}
 }

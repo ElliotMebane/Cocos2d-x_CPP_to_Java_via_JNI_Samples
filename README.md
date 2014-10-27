@@ -24,6 +24,7 @@ JNI communication<br/>
 <li>Passing an int from C++ to Java</li>
 <li>Passing an int from C++ to Java method and receiving a String return</li>
 <li>Passing a String and an int from C++ to Java method and receiving a String return</li>
+<li>Calling a Java method from C++ to detect Latitude/Longitude, receiving a Java Double Array return, converting it to a C++ vector.</li>
 </ul>
 
 Java Dialog<br/>

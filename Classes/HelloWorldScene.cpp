@@ -115,7 +115,12 @@ void HelloWorld::makeMenu()
 		MenuItem* tBtnSayHello = MenuItemFont::create(
 														"Say Hello JNI call",
 														CC_CALLBACK_1( HelloWorld::menuSayHelloCallback, this ) );
+		MenuItem* tBtnGetLocation = MenuItemFont::create(
+														"Get Location JNI call",
+														CC_CALLBACK_1( HelloWorld::menuGetLocationCallback, this ) );
 		tMenuItems.pushBack( tBtnSayHello );
+
+		tMenuItems.pushBack( tBtnGetLocation );
 
 		Menu* tMenu = Menu::createWithArray( tMenuItems );
 		tMenu->alignItemsVerticallyWithPadding( 40 );
@@ -134,6 +139,8 @@ void HelloWorld::menuBasicCallCallback( Ref* pSender )
 	{
 		t.env->CallStaticVoidMethod( t.classID, t.methodID );
 		t.env->DeleteLocalRef( t.classID );
+
+		debugLabel->setString( "..." );
 	}
 }
 
@@ -155,6 +162,8 @@ void HelloWorld::menuPassIntCallback( Ref* pSender )
 	{
 		t.env->CallStaticVoidMethod( t.classID, t.methodID, tTimes );
 		t.env->DeleteLocalRef( t.classID );
+
+		debugLabel->setString( "..." );
 	}
 }
 
@@ -194,6 +203,31 @@ void HelloWorld::menuSayHelloCallback( Ref* pSender )
 		std::string tStr = tBool ? "Return from sayHello: true" : "Return from sayHello: false";
 		t.env->DeleteLocalRef( t.classID );
 		debugLabel->setString( tStr );
+	}
+}
+
+// Demonstrates calling a Java method from C++ to detect Latitude/Longitude and receiving a Java Double Array return value
+// http://stackoverflow.com/questions/7318143/converting-between-jdoublearray-and-vectordouble-in-a-java-native-jni-method
+void HelloWorld::menuGetLocationCallback( Ref* pSender )
+{
+	JniMethodInfo t;
+	if( JniHelper::getStaticMethodInfo( t,
+										"com.roguish.MyAwesomeJavaClass",
+										"getLocation",
+										"()[D" ) )
+	{
+		jdoubleArray tJavaLocation = (jdoubleArray) t.env->CallStaticObjectMethod( t.classID, t.methodID );
+
+		jsize tSize = t.env->GetArrayLength( tJavaLocation );
+		std::vector<double> tLocationArray( tSize );
+		t.env->GetDoubleArrayRegion( tJavaLocation, 0, tSize, &tLocationArray[ 0 ] );
+
+		double tLat = (double) tLocationArray[ 0 ];
+		double tLong = (double) tLocationArray[ 1 ];
+
+		debugLabel->setString( "Lat: " + StringUtils::format( "%f", tLat ) + ", Long: " + StringUtils::format( "%f", tLong ) );
+
+		t.env->DeleteLocalRef( t.classID );
 	}
 }
 #endif

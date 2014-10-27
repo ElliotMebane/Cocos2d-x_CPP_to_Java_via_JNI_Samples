@@ -27,6 +27,7 @@ public:
     void menuPassIntCallback( Ref* pSender );
     void menuStringReturnCallback( Ref* pSender );
     void menuSayHelloCallback( Ref* pSender );
+    void menuGetLocationCallback( Ref* pSender );
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
