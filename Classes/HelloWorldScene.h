@@ -28,6 +28,7 @@ public:
     void menuStringReturnCallback( Ref* pSender );
     void menuSayHelloCallback( Ref* pSender );
     void menuGetLocationCallback( Ref* pSender );
+    void menuOpenBrowserURLCallback( Ref* pSender );
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);

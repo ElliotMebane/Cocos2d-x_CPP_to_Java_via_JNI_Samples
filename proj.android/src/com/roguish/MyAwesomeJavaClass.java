@@ -35,6 +35,7 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -182,4 +183,11 @@ public class MyAwesomeJavaClass extends Cocos2dxActivity
 		
 		return locationData;
 	}
+    
+    static void openBrowserURL( String pURL )
+    {
+        android.net.Uri tURI = android.net.Uri.parse( pURL );
+        Intent tIntent = new Intent( Intent.ACTION_VIEW, tURI );
+        ( (Cocos2dxActivity) Cocos2dxActivity.getContext() ).startActivity( tIntent );    	    
+    }
 }

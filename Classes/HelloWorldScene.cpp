@@ -115,12 +115,17 @@ void HelloWorld::makeMenu()
 		MenuItem* tBtnSayHello = MenuItemFont::create(
 														"Say Hello JNI call",
 														CC_CALLBACK_1( HelloWorld::menuSayHelloCallback, this ) );
+		tMenuItems.pushBack( tBtnSayHello );
+
 		MenuItem* tBtnGetLocation = MenuItemFont::create(
 														"Get Location JNI call",
 														CC_CALLBACK_1( HelloWorld::menuGetLocationCallback, this ) );
-		tMenuItems.pushBack( tBtnSayHello );
-
 		tMenuItems.pushBack( tBtnGetLocation );
+
+		MenuItem* tBtnOpenBrowserURL = MenuItemFont::create(
+														"Open Browser URL JNI call",
+														CC_CALLBACK_1( HelloWorld::menuOpenBrowserURLCallback, this ) );
+		tMenuItems.pushBack( tBtnOpenBrowserURL );
 
 		Menu* tMenu = Menu::createWithArray( tMenuItems );
 		tMenu->alignItemsVerticallyWithPadding( 40 );
@@ -226,6 +231,23 @@ void HelloWorld::menuGetLocationCallback( Ref* pSender )
 		double tLong = (double) tLocationArray[ 1 ];
 
 		debugLabel->setString( "Lat: " + StringUtils::format( "%f", tLat ) + ", Long: " + StringUtils::format( "%f", tLong ) );
+
+		t.env->DeleteLocalRef( t.classID );
+	}
+}
+
+void HelloWorld::menuOpenBrowserURLCallback( Ref* pSender )
+{
+	JniMethodInfo t;
+	if( JniHelper::getStaticMethodInfo( t,
+										"com.roguish.MyAwesomeJavaClass",
+										"openBrowserURL",
+										"(Ljava/lang/String;)V" ) )
+	{
+		const char* tURL = "http://news.google.com";
+		jstring tStringArg1 = t.env->NewStringUTF( tURL );
+
+		t.env->CallStaticBooleanMethod( t.classID, t.methodID, tStringArg1 );
 
 		t.env->DeleteLocalRef( t.classID );
 	}
