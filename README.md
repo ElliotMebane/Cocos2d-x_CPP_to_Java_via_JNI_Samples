@@ -12,19 +12,23 @@ https://github.com/ElliotMebane/Cocos2d-x_CPP_to_Java_via_JNI_Samples/blob/maste
 https://github.com/ElliotMebane/Cocos2d-x_CPP_to_Java_via_JNI_Samples/blob/master/proj.android/src/com/roguish/MyAwesomeJavaClass.java</li>
 </ul>
 
-This sample demonstrates the use of JNI for C++ to Java communication with Cocos2d-x v3.2. The foundation of the sample was this blog post by Stefan Nguyen:<br/>
-http://stnguyen.com/cocos2d-x/call-java-functions-from-cpp.html
+This sample demonstrates the use of JNI for C++ to Java communication with Cocos2d-x v3.2. The foundation of these samples are based on these posts:<br/>
+<ul>
+<li>Post by Stefan Nguyen, JNI basics: http://stnguyen.com/cocos2d-x/call-java-functions-from-cpp.html</li>
+<li>Post by Simon Pan, Open URL: http://discuss.cocos2d-x.org/t/how-to-open-url/8440/5</li>
+</ul>
 
 It was a challenge to get C++ to Java communication working with the latest version of Cocos2d-x because Cocos2d-x v.3.0 introduced significant changes and as a result a lot of the tutorials I found on this topic were outdated or incomplete. I prefer complete working samples over tutorials when I'm learning new code concepts. I hope this working sample helps make things a lot easier for you than they were for me as I tried to figure this stuff out! This sample has been compiled and tested but please notify me if you discover any problems. 
 
 JNI communication<br/>
-4 buttons that launch native Java dialog windows.
+Buttons that call methods in Java (and often launch native Java dialogs).
 <ul>
 <li>Calling a Java method from C++</li>
 <li>Passing an int from C++ to Java</li>
 <li>Passing an int from C++ to Java method and receiving a String return</li>
 <li>Passing a String and an int from C++ to Java method and receiving a String return</li>
 <li>Calling a Java method from C++ to detect Latitude/Longitude, receiving a Java Double Array return, converting it to a C++ vector.</li>
+<li>Calling a Java method to launch a URL in the native device web browser. Implementation based on solution here:<br />http://discuss.cocos2d-x.org/t/how-to-open-url/8440/5</li>
 </ul>
 
 Java Dialog<br/>
